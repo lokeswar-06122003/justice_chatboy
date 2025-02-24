@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Justice AI Chatbot</title>
+    <script>
+        async function sendMessage() {
+            let message = document.getElementById("userInput").value;
+            let response = await fetch("http://127.0.0.1:5000/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            });
+            let data = await response.json();
+            document.getElementById("chatbox").innerHTML += `<p>User: ${message}</p><p>Bot: ${data.response}</p>`;
+        }
+    </script>
+</head>
+<body>
+    <h2>Justice Department AI Chatbot</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="Type a legal query...">
+    <button onclick="sendMessage()">Ask</button>
+</body>
+</html>
