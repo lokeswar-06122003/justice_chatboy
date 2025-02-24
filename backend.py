@@ -7,19 +7,7 @@ app = Flask(__name__)
 # OpenAI API Key
 openai.api_key = "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"
 
-@app.route("/chat", methods=["POST"])
-def chat():
-    user_input = request.json.get("message")
-    
-    # Define a specialized prompt for legal assistance
-    prompt = f"Provide legal information based on the following query: {user_input}"
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}]
-    )
-
-    return jsonify({"response": response["choices"][0]["message"]["content"]})
 @app.route("/chat", methods=["POST"])
 def chat():
     user_input = request.json.get("message")
